@@ -11,10 +11,10 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 parser = argparse.ArgumentParser(description = "RWNN Training")
 parser.add_argument("--should_prepare", type = str2bool, default = False, help = 'Set to True to run prepare_data.')
-parser.add_argument("--epochs", type = int, default = 1000, help = 'Set the number of epochs.')
+parser.add_argument("--epochs", type = int, default = 10, help = 'Set the number of epochs.')
 parser.add_argument("--max_patience", type = int, default = 5, help = 'Set the maximum patienece.')
-parser.add_argument("--num_workers", type = int, default = 12, help = 'Set the number of workers.')
-parser.add_argument("--batch_size", type = int, default = 32, help = 'Set the batch size.')
+parser.add_argument("--num_workers", type = int, default = 1, help = 'Set the number of workers.')
+parser.add_argument("--batch_size", type = int, default = 1, help = 'Set the batch size.')
 parser.add_argument("--epoch_start", type = int, default = 0, help = 'Load the state dict of epoch_start - 1.')
 parser.add_argument("--dae", type = str2bool, default = True, help = 'RWNN-F or RWNN-DAE setting (train DAE first).')
 parser.add_argument("--lr", type = float, default = 1e-3, help = 'Set the learning rate.')
