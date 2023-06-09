@@ -14,7 +14,7 @@ class WrapperAlgorithms(torch.nn.Module):
 
     def dae(self, x, layer = 1, map = None, show_ne = False):
         [cn, dn], nes = self.transform_net.forward(x, map = map, J = layer)
-        dn = [[torch.zeros_like(d) for d in dn[j]] for j in range(len(dn))]
+        dn = [[torch.zeros_like(d) for d in dn[j]] for j in range(len(dn))] #change to set c/d to 0
         res = self.transform_net.inverse_from_pieces([cn, dn])
         if show_ne:
             return res, nes[-1]
