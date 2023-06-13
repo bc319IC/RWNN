@@ -11,11 +11,11 @@ os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 parser = argparse.ArgumentParser(description = "RWNN Testing")
-parser.add_argument("--epoch", type = int, default = 41, help = 'Select the epoch to load (make sure the file exists).')
+parser.add_argument("--epoch", type = int, default = 19, help = 'Select the epoch to load (make sure the file exists).')
 parser.add_argument("--test_nl", type = float, default = 25., help = 'Set the testing noise level (0 to 255).')
 parser.add_argument("--decode_depth", type = int, default = 1, help = 'Set the recursion depth for the transform.')
 parser.add_argument("--map", type = str2bool, default = False, help = 'Set to True for a spatially varying noise map.')
-parser.add_argument("--dae", type = str2bool, default = True, help = 'RWNN-F or RWNN-DAE setting (make sure you load the correct weights).')
+parser.add_argument("--dae", type = str2bool, default = False, help = 'RWNN-F or RWNN-DAE setting (make sure you load the correct weights).')
 opt = parser.parse_args()
 
 if __name__ == "__main__":
