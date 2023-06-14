@@ -43,8 +43,8 @@ class Wrapper(WrapperAlgorithms):
         #inp = x + noise + con_noise #CG
 
         # Define the Prewitt filter kernels
-        prewitt_x = torch.cuda.FloatTensor([[-1., 0., 1.], [-2., 0., 2.], [-1., 0., 1.]])
-        prewitt_y = torch.cuda.FloatTensor([[-1., -2., -1.], [0., 0., 0.], [1., 2., 1.]])
+        prewitt_x = torch.cuda.FloatTensor([[-1., 0., 1.], [-1., 0., 1.], [-1., 0., 1.]])
+        prewitt_y = torch.cuda.FloatTensor([[-1., -1., -1.], [0., 0., 0.], [1., 1., 1.]])
         # Apply zero padding to the input tensor
         padded_input = F.pad(x, (1, 1, 1, 1), mode='reflect')
         # Apply the Prewitt filter using conv2d
@@ -52,7 +52,7 @@ class Wrapper(WrapperAlgorithms):
         output_y = F.conv2d(padded_input, prewitt_y.unsqueeze(0).unsqueeze(0))
         # Compute the gradient magnitude
         edges = torch.sqrt(output_x.pow(2) + output_y.pow(2))
-        edges = (100*edges+1e-6)/edges.max()
+        edges = (200*edges+1e-6)/edges.max()
         noise = torch.normal(0, edges/255).cuda()
         inp = x + noise
         inp = torch.cuda.FloatTensor(inp)
@@ -98,7 +98,7 @@ class Wrapper(WrapperAlgorithms):
         output_y = F.conv2d(padded_input, prewitt_y.unsqueeze(0).unsqueeze(0))
         # Compute the gradient magnitude
         edges = torch.sqrt(output_x.pow(2) + output_y.pow(2))
-        edges = (100*edges+1e-6)/edges.max()
+        edges = (200*edges+1e-6)/edges.max()
         noise = torch.normal(0, edges/255).cuda()
         inp = x + noise
         inp = torch.cuda.FloatTensor(inp)
